@@ -34,8 +34,10 @@ class ProductController extends AbstractController
         $product = new Product;
 
         $form = $this->createForm(ProductType::class, $product);
+
+        $form->handleRequest($request);
         
-        if($_SERVER['REQUEST_METHOD'] == 'POST') {
+        if($form->isSubmitted()) {
 
             $manager->persist($product);
 
