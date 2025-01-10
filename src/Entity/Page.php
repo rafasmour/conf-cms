@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\PageRepository;
 use Doctrine\DBAL\Types\Types;
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: PageRepository::class)]
@@ -62,5 +63,9 @@ class Page
         $this->content = $content;
 
         return $this;
+    }
+    
+    public static function searchSlug(string $slug, EntityManagerInterface $entityManager): ?Page {
+        return $entityManager->getRepository(Page::class)->findOneBy(["slug"=> $slug]);
     }
 }

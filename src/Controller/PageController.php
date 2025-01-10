@@ -78,4 +78,16 @@ final class PageController extends AbstractController
 
         return $this->redirectToRoute('app_page_index', [], Response::HTTP_SEE_OTHER);
     }
+    #[Route('/{slug<.*>}' , name:'app_page_view')]
+    public function getBySlug(string $slug, Request $request, EntityManagerInterface $entityManager): Response{
+        $page = Page::searchSlug($slug, $entityManager);
+
+        if (empty($page)){
+            throw $this->createNotFoundException('Could not find Page!');
+        }
+
+        return $this->render('page/view.html.twig', [
+            'page'=> $page,
+        ]);
+    }
 }
