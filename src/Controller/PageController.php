@@ -42,7 +42,7 @@ final class PageController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_page_show', methods: ['GET'])]
+    #[Route('/{id<d+>}', name: 'app_page_show', methods: ['GET'])]
     public function show(Page $page): Response
     {
         return $this->render('page/show.html.twig', [
@@ -50,7 +50,7 @@ final class PageController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'app_page_edit', methods: ['GET', 'POST'])]
+    #[Route('/{id<d+>}/edit', name: 'app_page_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Page $page, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(PageType::class, $page);
@@ -68,7 +68,7 @@ final class PageController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_page_delete', methods: ['POST'])]
+    #[Route('/{id<d+>}', name: 'app_page_delete', methods: ['POST'])]
     public function delete(Request $request, Page $page, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete'.$page->getId(), $request->getPayload()->getString('_token'))) {
@@ -79,9 +79,8 @@ final class PageController extends AbstractController
         return $this->redirectToRoute('app_page_index', [], Response::HTTP_SEE_OTHER);
     }
     #[Route('/{slug<.*>}' , name:'app_page_view')]
-    public function getBySlug(string $slug, Request $request, EntityManagerInterface $entityManager): Response{
-        $page = Page::searchSlug($slug, $entityManager);
-
+    public function getBySlug(string $slug, Request $request, EntityManagerInterface $manager): Response{
+        $page = $manager->getRepository(Page::class)->findOneBySlug($slug);
         if (empty($page)){
             throw $this->createNotFoundException('Could not find Page!');
         }

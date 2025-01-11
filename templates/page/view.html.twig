@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 
-{% block title}{{page.title}}{%title%}
+{% block header %}<h1 class="title">{{ page.title }}</h1>{% endblock %}
 {% block body %}
-<p>{{page.content}}</p>
+<div>{{page.content}}</div>
 {% endblock %}

@@ -18,7 +18,7 @@ class Page
     #[ORM\Column(length: 50)]
     private ?string $title = null;
 
-    #[ORM\Column(length: 50)]
+    #[ORM\Column(type: 'string', length: 50, unique: true)]
     private ?string $slug = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
@@ -65,7 +65,4 @@ class Page
         return $this;
     }
     
-    public static function searchSlug(string $slug, EntityManagerInterface $entityManager): ?Page {
-        return $entityManager->getRepository(Page::class)->findOneBy(["slug"=> $slug]);
-    }
 }
