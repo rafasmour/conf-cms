@@ -17,7 +17,7 @@ class PageRepository extends ServiceEntityRepository
     }
 
    public function findOneBySlug(string $slug): ?Page
-   {
+   {    
         return $this->createQueryBuilder('page')
            ->andWhere('page.slug = :slug')
            ->setParameter('slug', $slug)

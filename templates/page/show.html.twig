@@ -30,5 +30,7 @@
 
     <a href="{{ path('app_page_edit', {'id': page.id}) }}">edit</a>
 
+    <a href="{{ path('app_page_view', {'slug': page.slug})}}">Preview</a>
+
     {{ include('page/_delete_form.html.twig') }}
 {% endblock %}

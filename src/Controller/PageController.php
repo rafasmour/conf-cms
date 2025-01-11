@@ -14,7 +14,7 @@ use Symfony\Component\Routing\Attribute\Route;
 #[Route('/page')]
 final class PageController extends AbstractController
 {
-    #[Route(name: 'app_page_index', methods: ['GET'])]
+    #[Route('/admin', name: 'app_page_index', methods: ['GET'])]
     public function index(PageRepository $pageRepository): Response
     {
         return $this->render('page/index.html.twig', [
@@ -22,7 +22,7 @@ final class PageController extends AbstractController
         ]);
     }
 
-    #[Route('/new', name: 'app_page_new', methods: ['GET', 'POST'])]
+    #[Route('/admin/new', name: 'app_page_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $page = new Page();
@@ -42,7 +42,7 @@ final class PageController extends AbstractController
         ]);
     }
 
-    #[Route('/{id<d+>}', name: 'app_page_show', methods: ['GET'])]
+    #[Route('/{id<\d+>}', name: 'app_page_show', methods: ['GET'])]
     public function show(Page $page): Response
     {
         return $this->render('page/show.html.twig', [
@@ -50,7 +50,7 @@ final class PageController extends AbstractController
         ]);
     }
 
-    #[Route('/{id<d+>}/edit', name: 'app_page_edit', methods: ['GET', 'POST'])]
+    #[Route('/{id<\d+>}/edit', name: 'app_page_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Page $page, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(PageType::class, $page);
@@ -68,7 +68,7 @@ final class PageController extends AbstractController
         ]);
     }
 
-    #[Route('/{id<d+>}', name: 'app_page_delete', methods: ['POST'])]
+    #[Route('/{id<\d+>}', name: 'app_page_delete', methods: ['POST'])]
     public function delete(Request $request, Page $page, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete'.$page->getId(), $request->getPayload()->getString('_token'))) {
