@@ -23,7 +23,7 @@ class AdminController extends AbstractController
     {
         return $this->forward('App\Controller\SecurityController::logout');
     }
-    #[Route(path: '/admin/pages/', name: 'app_admin_page', methods: ['GET'])]
+    #[Route(path: '/admin/pages/', name: 'app_admin_page_index', methods: ['GET'])]
     public function pageIndex(PageRepository $pageRepository): Response
     {
         return $this->forward('App\Controller\PageController::index',['pageRepository' => $pageRepository]);
@@ -40,8 +40,14 @@ class AdminController extends AbstractController
     #[Route('admin/pages/{id<\d+>}/edit', name: 'app_admin_page_edit', methods: ['GET', 'POST'])]
     public function editPage(Request $request, Page $page, EntityManagerInterface $entityManager): Response
     {
-        return $this->forward('app\Controller\PageController::edit', ['request'=> $request, 'page' => $page, 'entityManager', $entityManager]);
-    }
+        return $this->forward(
+            'App\Controller\PageController::edit',
+            [
+                'request' => $request,
+                'page' => $page,
+                'entityManager' => $entityManager
+            ]
+        );    }
     #[Route('admin/pages/{id<\d+>}/delete', name: 'app_admin_page_delete', methods: ['POST'])]
     public function deletePage(Request $request, Page $page, EntityManagerInterface $entityManager): Response
     {

@@ -14,7 +14,7 @@ final class PageController extends AbstractController
 {
     public function index(PageRepository $pageRepository): Response
     {
-        return $this->render('page/index.html.twig', [
+        return $this->render('admin/page/index.html.twig', [
             'pages' => $pageRepository->findAll(),
         ]);
     }
@@ -29,10 +29,10 @@ final class PageController extends AbstractController
             $entityManager->persist($page);
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_page_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_admin_page_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->render('page/new.html.twig', [
+        return $this->render('admin/page/new.html.twig', [
             'page' => $page,
             'form' => $form,
         ]);
@@ -40,7 +40,7 @@ final class PageController extends AbstractController
 
     public function show(Page $page): Response
     {
-        return $this->render('page/show.html.twig', [
+        return $this->render('admin/page/show.html.twig', [
             'page' => $page,
         ]);
     }
@@ -53,16 +53,15 @@ final class PageController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_page_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_admin_page_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->render('page/edit.html.twig', [
+        return $this->render('admin/page/edit.html.twig', [
             'page' => $page,
             'form' => $form,
         ]);
     }
 
-    #[Route('/{id<\d+>}', name: 'app_page_delete', methods: ['POST'])]
     public function delete(Request $request, Page $page, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete'.$page->getId(), $request->getPayload()->getString('_token'))) {
@@ -70,7 +69,7 @@ final class PageController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('app_page_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('app_admin_page_index', [], Response::HTTP_SEE_OTHER);
     }
     #[Route('/{slug<.*>}' , name:'app_page_view')]
     public function getBySlug(string $slug, Request $request, EntityManagerInterface $manager): Response{
