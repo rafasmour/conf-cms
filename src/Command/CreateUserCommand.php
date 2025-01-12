@@ -89,7 +89,7 @@ class CreateUserCommand extends Command
         $user = new User();
         $user->setEmail($email);
         $user->setUsername($username);
-        $user->setRoles(['admin']);
+        $user->setRoles(['ROLE_ADMIN']);
         #hashing password
         $output->writeln('Hashing password...');
         $hashedPassword = $this->passwordHasher->hashPassword($user, $password);
