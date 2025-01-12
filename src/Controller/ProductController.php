@@ -12,24 +12,21 @@ use Symfony\Component\HttpFoundation\Request;
 use Doctrine\ORM\EntityManagerInterface;    
 class ProductController extends AbstractController
 {
-    #[Route('/product', name: 'product_index')]
     public function index(ProductRepository $repository): Response
     {
 
-        return $this->render('product/index.html.twig', [
+        return $this->render('/admin/product/index.html.twig', [
             'controller_name' => 'ProductController',
             'products' => $repository->findAll(),
         ]);
     }
-    #[Route('/product/{id<\d+>}', name: 'product_show')]
     public function show(Product $product): Response
     {
-        return $this->render('product/show.html.twig', [
+        return $this->render('/admin/product/show.html.twig', [
             'product' => $product
         ]);
     }
-    #[Route('/product/new', name: 'product_new')]
-    public function new(Request $request, EntityManagerInterface $manager): Response{
+    public function new(Request $request, EntityManagerInterface $entityManager): Response{
 
         $product = new Product;
 
@@ -39,58 +36,49 @@ class ProductController extends AbstractController
         
         if($form->isSubmitted() && $form->isValid()) {
 
-            $manager->persist($product);
+            $entityManager->persist($product);
 
-            $manager->flush();
+            $entityManager->flush();
 
             $this->addFlash('notice','Product has been added');
 
-            return $this->redirectToRoute('product_show', [
+            return $this->redirectToRoute('app_admin_product_show', [
                 'id'=> $product->getId(),
             ]);
         }
 
-        return $this->render('product/new.html.twig', [
+        return $this->render('admin/product/new.html.twig', [
             'form'=> $form->createView(),
         ]);
 
     }
-    #[Route('/product/{id<\d+>}/edit', name: 'product_edit')]
-    public function edit(Product $product, Request $request, EntityManagerInterface $manager): Response{
+    public function edit(Product $product, Request $request, EntityManagerInterface $entityManager): Response{
         $form = $this->createForm(ProductType::class, $product);
 
         $form->handleRequest($request);
         
         if($form->isSubmitted() && $form->isValid()) {
 
-            $manager->flush();
+            $entityManager->flush();
 
             $this->addFlash('notice','Product has been updated');
 
-            return $this->redirectToRoute('product_show', [
+            return $this->redirectToRoute('app_admin_product_show', [
                 'id'=> $product->getId(),
             ]);
         }
 
-        return $this->render('product/edit.html.twig', [
+        return $this->render('admin/product/edit.html.twig', [
             'form'=> $form->createView(),
         ]);
     }
 
-    #[Route('/product/{id<\d+>}/delete', name: 'product_delete')]
-    public function delete( Request $request, Product $product, EntityManagerInterface $manager): Response{
-        if($request->isMethod('POST')){
-            $manager->remove($product);
-            $manager->flush();
-
-            $this->addFlash('notice', 'Product deleted successfully!');
-
-            return $this->redirectToRoute('product_index');
+    public function delete(Request $request, Product $product, EntityManagerInterface $entityManager): Response{
+        if ($this->isCsrfTokenValid('delete'.$product->getId(), $request->getPayload()->getString('_token'))) {
+            $entityManager->remove($product);
+            $entityManager->flush();
         }
 
-
-        return $this->render('product/delete.html.twig', [
-            'id' => $product->getId(),
-        ]);
+        return $this->redirectToRoute('app_admin_product_index', [], Response::HTTP_SEE_OTHER);
     }
 }
