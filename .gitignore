@@ -1,4 +1,3 @@
-
 ###> symfony/framework-bundle ###
 /.env
 /.env.dev
@@ -27,5 +26,7 @@
 /assets/vendor/
 ###< symfony/asset-mapper ###
 
+##node
+node_modules
 #todo
 todo.md
