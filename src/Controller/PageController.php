@@ -10,9 +10,15 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Security\Core\User\UserInterface;
 final class PageController extends AbstractController
 {
-    public function index(PageRepository $pageRepository): Response
+    #[Route(path: "/", name: "app_index")]
+    public function index(): Response
+    {
+        return $this->render('page/index.html.twig');
+    }
+    public function adminIndex(PageRepository $pageRepository): Response
     {
         return $this->render('admin/page/index.html.twig', [
             'pages' => $pageRepository->findAll(),
