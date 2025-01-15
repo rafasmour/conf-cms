@@ -8,15 +8,13 @@
         <link rel="stylesheet" href="{{ asset('styles/app.css') }}">
     {% endblock %}
 </head>
-<body class="min-h-screen bg-blue-400 overflow-hidden">
+<body class=" min-h-screen bg-gray-200 shadow-inner">
     <!-- Navigation Bar -->
         {% include 'components/_header.html.twig' %}
     
 
     <!-- Main Content -->
-    <main class="min-h-70 flex">
-        {% block body %}{% endblock %}
-    </main>
+        {% include 'components/_main.html.twig' %}
 
     <!-- Footer -->
     <footer>

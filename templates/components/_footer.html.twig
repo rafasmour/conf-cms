@@ -1,1 +1,46 @@
-something
+<footer class="h-52 bg-white-200  grid grid-cols-1 sm:grid-cols-3 px-10 gap-10 sm:p-10 mt-4 border-t-2 border-t-gray-300 shadow-2xl">
+    <div class="">{% block social %}
+        <h2 class="text-center sm:text-left text-4xl sm:text-3xl mb-2">Social Media</h2>
+        <ul class="h-28 flex flex-col items-center sm:items-start sm:justify-around text-xl sm:text-base list-none">
+            <li>
+                <a href="#" class="text-black font-medium hover:text-blue-700 transition">
+                    Home
+                </a>
+            </li>
+            <li>
+                <a href="#" class="text-black font-medium hover:text-blue-700 transition">
+                    About
+                </a>
+            </li>
+            <li>
+                <a href="#" class="text-black font-medium hover:text-blue-700 transition">
+                    Contact
+                </a>
+            </li>
+        </ul>
+    {% endblock %}</div>
+    <div class="">{% block contact %}
+        <h2 class="text-center sm:text-left text-4xl sm:text-3xl mb-2">Contact info</h2>
+        <ul class="h-28 flex flex-col items-center sm:items-start sm:justify-around text-xl sm:text-base list-none">
+            <li>
+                <a href="tel:13458219485" class="text-black font-medium hover:text-blue-700 transition">
+                    +(23) 234 241 2430
+                </a>
+            </li>
+            <li>
+                <a href="mailto:mail@mail.com" class="text-black font-medium hover:text-blue-700 transition">
+                    mail@mail.com
+                </a>
+            </li>
+            <li>
+                <a href="adress" class="text-black font-medium hover:text-blue-700 transition">
+                    some street 1, America 29835
+                </a>
+            </li>
+        </ul>    
+    
+    {% endblock %}</div>
+    <div class="mx-10 sm:mx-0">{% block googleMaps %} 
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d425352.93330422847!2d-112.71560319552488!3d33.603493592854136!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x872b12ed50a179cb%3A0x8c69c7f8354a1bac!2zzqbOv86vzr3Ouc6-LCDOkc-BzrnOts-Mzr3OsSwgzpfOvc-JzrzOrc69zrXPgiDOoM6_zrvOuc-EzrXOr861z4I!5e0!3m2!1sel!2sgr!4v1736920557154!5m2!1sel!2sgr" class="min-w-full"  style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    {% endblock %}</div>
+</footer>
