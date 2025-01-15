@@ -1,4 +1,5 @@
-{% extends 'base.html.twig' %}
+{% extends '/admin/base.admin.html.twig' %}
+
 
 {% block title %}Hello ProductController!{% endblock %}
 
@@ -18,13 +19,14 @@
         {% for product in products %}
           <tr>
             <td>
-                <a href="{{ path ('app_admin_product_show', {'id': product.id}) }}">
                     {{product.name}}
-                </a>
             </td>
             <td>{{product.description}}</td>
             <td>{{product.size}}</td>
-
+            <td>
+                <a href="{{ path('app_admin_product_show', {'id': product.id}) }}">show</a>
+                <a href="{{ path('app_admin_product_edit', {'id': product.id}) }}">edit</a>
+            </td>
           </tr>  
         {% endfor %}
     </tbody>

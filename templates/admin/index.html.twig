@@ -1,14 +1,1 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}My Website{% endblock %}</title>
-    {% block stylesheets %}
-        <link rel="stylesheet" href="{{ asset('styles/app.css') }}">
-    {% endblock %}
-</head>
-<body class=" min-h-screen bg-gray-200 shadow-inner">
-    
-</body>
-</html>
+{% extends '/admin/base.admin.html.twig' %}

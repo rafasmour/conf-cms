@@ -18,66 +18,6 @@ final class PageController extends AbstractController
     {
         return $this->render('page/index.html.twig');
     }
-    public function adminIndex(PageRepository $pageRepository): Response
-    {
-        return $this->render('admin/page/index.html.twig', [
-            'pages' => $pageRepository->findAll(),
-        ]);
-    }
-
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
-    {
-        $page = new Page();
-        $form = $this->createForm(PageType::class, $page);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->persist($page);
-            $entityManager->flush();
-            $this->addFlash('notice','Product has been created');
-            return $this->redirectToRoute('app_admin_page_index', [], Response::HTTP_SEE_OTHER);
-        }
-
-        return $this->render('admin/page/new.html.twig', [
-            'page' => $page,
-            'form' => $form,
-        ]);
-    }
-
-    public function show(Page $page): Response
-    {
-        return $this->render('admin/page/show.html.twig', [
-            'page' => $page,
-        ]);
-    }
-
-    public function edit(Request $request, Page $page, EntityManagerInterface $entityManager): Response
-    {
-        $form = $this->createForm(PageType::class, $page);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->flush();
-            $this->addFlash('notice','Page has been updated');
-            return $this->redirectToRoute('app_admin_page_index', [], Response::HTTP_SEE_OTHER);
-        }
-
-        return $this->render('admin/page/edit.html.twig', [
-            'page' => $page,
-            'form' => $form,
-        ]);
-    }
-
-    public function delete(Request $request, Page $page, EntityManagerInterface $entityManager): Response
-    {
-        if ($this->isCsrfTokenValid('delete'.$page->getId(), $request->getPayload()->getString('_token'))) {
-            $entityManager->remove($page);
-            $this->addFlash('notice','Page has been Deleted');
-            $entityManager->flush();
-        }
-
-        return $this->redirectToRoute('app_admin_page_index', [], Response::HTTP_SEE_OTHER);
-    }
     #[Route('/{slug<.*>}' , name:'app_page_view')]
     public function getBySlug(string $slug, Request $request, EntityManagerInterface $manager): Response{
         $page = $manager->getRepository(Page::class)->findOneBySlug($slug);

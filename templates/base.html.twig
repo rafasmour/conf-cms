@@ -4,21 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}My Website{% endblock %}</title>
-    {% block stylesheets %}
-        <link rel="stylesheet" href="{{ asset('styles/app.css') }}">
-    {% endblock %}
+    {{ include('components/_stylesheets.html.twig') }}
 </head>
 <body class=" min-h-screen bg-gray-200 shadow-inner">
     <!-- Navigation Bar -->
-        {% include 'components/_header.html.twig' %}
+        {% include 'components/public/_header.html.twig' %}
     
 
     <!-- Main Content -->
-        {% include 'components/_main.html.twig' %}
+        {% include 'components/public/_main.html.twig' %}
 
     <!-- Footer -->
-    <footer>
-        {% include 'components/_footer.html.twig' %}
-    </footer>
+        {% include 'components/public/_footer.html.twig' %}
 </body>
 </html>

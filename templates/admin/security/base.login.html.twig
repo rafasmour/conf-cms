@@ -4,9 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}{% endblock %}</title>
-    {% block stylesheets %}
-        <link rel="stylesheet" href="{{ asset('styles/app.css') }}">
-    {% endblock %}
+    {{ include('components/_stylesheets.html.twig') }}
+
 </head>
 <body class="h-screen flex items-center justify-center bg-gray-200">
         {% block form %}
