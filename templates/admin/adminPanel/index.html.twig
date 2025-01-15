@@ -1,10 +1,1 @@
-{% extends 'base.html.twig' %}
-
-{% block body %}
-<h1 class="title">Welcome back {{app.user.username}}</h1>
-
-<a href="{{ path('app_admin_page_index') }}">Pages</a>
-<a href="{{ path('app_admin_product_index') }}">Products</a>
-
-
-{% endblock %}
+{% extends '/admin/base.admin.html.twig' %}
