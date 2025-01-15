@@ -1,9 +1,9 @@
-{% extends 'base.html.twig' %}
+{% extends '/admin/security/base.login.html.twig' %}
 
 {% block title %}Log in!{% endblock %}
 
-{% block body %}
-    <form method="post">
+{% block form %}
+    <form method="post" class="flex flex-col min-w-36 min-h-72 justify-between p-5 bg-gray-100 rounded-xl shadow-xl">
         {% if error %}
             <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
         {% endif %}
@@ -14,25 +14,22 @@
             </div>
         {% endif %}
 
-        <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-        <label for="username">Username</label>
-        <input type="text" value="{{ last_username }}" name="_username" id="username" class="form-control" autocomplete="username" required autofocus>
-        <label for="password">Password</label>
-        <input type="password" name="_password" id="password" class="form-control" autocomplete="current-password" required>
+        <h1 class="text-3xl font-bold text-center">Login</h1>
+        <input type="text" class="text-2xl p-2 rounded-md shadow-lg" value="{{ last_username }}" name="_username" id="username" class="" autocomplete="username" placeholder="enter username" required autofocus>
+        <input type="password" class="text-2xl p-2 rounded-md shadow-lg" name="_password" id="password" class="" autocomplete="current-password" placeholder="enter password"  required>
 
         <input type="hidden" name="_csrf_token"
-               value="{{ csrf_token('authenticate') }}"
-        >
+               value="{{ csrf_token('authenticate') }}">
 
-        {#
-            Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
-            See https://symfony.com/doc/current/security/remember_me.html
+        
+            {# Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
+            See https://symfony.com/doc/current/security/remember_me.html #}
 
-            <div class="checkbox mb-3">
+            <div>
                 <input type="checkbox" name="_remember_me" id="_remember_me">
-                <label for="_remember_me">Remember me</label>
+                <label for="_remember_me" class=" text-lg">Remember me</label>
             </div>
-        #}
+       
 
         <button class="btn btn-lg btn-primary" type="submit">
             Sign in
