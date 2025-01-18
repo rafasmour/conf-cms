@@ -7,12 +7,11 @@
     {{ include('components/_stylesheets.html.twig') }}
 
 </head>
-<body class="min-h-screen bg-gray-200 shadow-inner grid grid-cols-12">
+<body class="min-h-screen bg-gray-200 shadow-inner grid grid-cols-12 p-2">
     <div class="min-h-screen p-2 col-span-2 border-r-2 border-r-gray-300">
         {{ include('/components/admin/_adminNav.html.twig') }}
     </div>
     <div class="col-span-10 block">
-        a
         {% block body %}
 
         {% endblock %}

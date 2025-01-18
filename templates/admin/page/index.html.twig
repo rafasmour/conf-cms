@@ -1,40 +1,42 @@
 {% extends '/admin/base.admin.html.twig' %}
 
-
 {% block title %}Page index{% endblock %}
 
 {% block body %}
     <h1>Page index</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Title</th>
-                <th>Slug</th>
-                <th>Content</th>
-                <th>actions</th>
-            </tr>
+    <table class="table-auto mx-auto w-90 border-collapse border border-gray-300 mt-4">
+        <thead class="bg-gray-200 text-gray-700">
+        <tr>
+            <th class="border border-gray-300 px-4 py-2">Id</th>
+            <th class="border border-gray-300 px-4 py-2">Title</th>
+            <th class="border border-gray-300 px-4 py-2">Slug</th>
+            <th class="border border-gray-300 px-4 py-2">Content</th>
+            <th class="border border-gray-300 px-4 py-2">Actions</th>
+            <th class="border border-gray-300 px-4 py-2">Set Home</th>
+        </tr>
         </thead>
         <tbody>
         {% for page in pages %}
-            <tr>
-                <td>{{ page.id }}</td>
-                <td>{{ page.title }}</td>
-                <td>{{ page.slug }}</td>
-                <td>{{ page.content }}</td>
-                <td>
-                    <a href="{{ path('app_admin_page_show', {'id': page.id}) }}">show</a>
-                    <a href="{{ path('app_admin_page_edit', {'id': page.id}) }}">edit</a>
+            <tr class="bg-white hover:bg-gray-100">
+                <td class="border border-gray-300 px-4 py-2">{{ page.id }}</td>
+                <td class="border border-gray-300 px-4 py-2">{{ page.title }}</td>
+                <td class="border border-gray-300 px-4 py-2">{{ page.slug }}</td>
+                <td class="border border-gray-300 px-4 py-2">{{ page.content }}</td>
+                <td class="border border-gray-300 px-4 py-2">
+                    <a href="{{ path('app_admin_page_show', {'id': page.id}) }}" class="text-blue-500 hover:text-blue-700">show</a>
+                    <a href="{{ path('app_admin_page_edit', {'id': page.id}) }}" class="text-blue-500 hover:text-blue-700 ml-2">edit</a>
                 </td>
+                <td class="border border-gray-300 px-4 py-2">
+                    <a href="{{ path('app_admin_page_change_home', {'id': page.id}) }}" class="text-blue-500 hover:text-blue-700">set home</a>
             </tr>
         {% else %}
             <tr>
-                <td colspan="5">no records found</td>
+                <td colspan="5" class="border border-gray-300 px-4 py-2 text-center">no records found</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_admin_page_new') }}">Create new</a>
+    <a href="{{ path('app_admin_page_new') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4 inline-block">Create new</a>
 {% endblock %}

@@ -1,35 +1,33 @@
 {% extends '/admin/base.admin.html.twig' %}
 
-
 {% block title %}Hello ProductController!{% endblock %}
 
 {% block body %}
 
-<a href="{{ path('app_admin_product_new') }}">New product</a>
 
-<table>
-    <thead>
+    <table class="table-auto mx-auto w-90 border-collapse border border-gray-300 mt-4">
+        <thead class="bg-gray-200 text-gray-700">
         <tr>
-            <th>Name</th>
-            <th>Description</th>
-            <th>Size</th>
+            <th class="border border-gray-300 px-4 py-2">Name</th>
+            <th class="border border-gray-300 px-4 py-2">Description</th>
+            <th class="border border-gray-300 px-4 py-2">Size</th>
+            <th class="border border-gray-300 px-4 py-2">Actions</th>
         </tr>
-    </thead>
-    <tbody>
+        </thead>
+        <tbody>
         {% for product in products %}
-          <tr>
-            <td>
-                    {{product.name}}
-            </td>
-            <td>{{product.description}}</td>
-            <td>{{product.size}}</td>
-            <td>
-                <a href="{{ path('app_admin_product_show', {'id': product.id}) }}">show</a>
-                <a href="{{ path('app_admin_product_edit', {'id': product.id}) }}">edit</a>
-            </td>
-          </tr>  
+            <tr class="bg-white hover:bg-gray-100">
+                <td class="border border-gray-300 px-4 py-2">{{ product.name }}</td>
+                <td class="border border-gray-300 px-4 py-2">{{ product.description }}</td>
+                <td class="border border-gray-300 px-4 py-2">{{ product.size }}</td>
+                <td class="border border-gray-300 px-4 py-2">
+                    <a href="{{ path('app_admin_product_show', {'id': product.id}) }}" class="text-blue-500 hover:text-blue-700">show</a>
+                    <a href="{{ path('app_admin_product_edit', {'id': product.id}) }}" class="text-blue-500 hover:text-blue-700 ml-2">edit</a>
+                </td>
+            </tr>
         {% endfor %}
-    </tbody>
-</table>
+        </tbody>
+    </table>
+    <a href="{{ path('app_admin_product_new') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">New product</a>
 
 {% endblock %}

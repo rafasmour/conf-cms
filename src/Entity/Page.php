@@ -4,10 +4,11 @@ namespace App\Entity;
 
 use App\Repository\PageRepository;
 use Doctrine\DBAL\Types\Types;
-use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: PageRepository::class)]
+#[ORM\Table(name: 'page')]
+#[ORM\UniqueConstraint(name: 'unique_home', columns: ['home'])]
 class Page
 {
     #[ORM\Id]
@@ -23,6 +24,9 @@ class Page
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $content = null;
+
+    #[ORM\Column(type: 'boolean', unique: true)]
+    private ?bool $home = false;
 
     public function getId(): ?int
     {
@@ -64,5 +68,16 @@ class Page
 
         return $this;
     }
-    
+
+    public function getHome(): ?bool
+    {
+        return $this->home;
+    }
+
+    public function setHome(bool $home): static
+    {
+        $this->home = $home;
+
+        return $this;
+    }
 }
