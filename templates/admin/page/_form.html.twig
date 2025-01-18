@@ -1,4 +1,13 @@
-{{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+{{ form_start(form, {'attr': {'class': 'space-y-4'}}) }}
+    {% for field in form %}
+        <div>
+            {% if field.vars.id == 'page__token' %}
+                {{ form_widget(field, {'attr': {'type': 'hidden'}}) }}
+            {% else %}
+                {{ form_label(field) }}<br>
+                {{ form_widget(field, {'attr': {'class': 'w-full px-4 py-2 border border-black rounded-md'}}) }}
+            {% endif %}
+        </div>
+    {% endfor %}
+<button class="btn bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">{{ button_label|default('Save') }}</button>
 {{ form_end(form) }}
