@@ -1,37 +1,35 @@
 {% extends '/admin/base.admin.html.twig' %}
 
-
 {% block title %}Page{% endblock %}
 
 {% block body %}
-    <h1>Page</h1>
+    <h1 class="">Page</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ page.id }}</td>
-            </tr>
-            <tr>
-                <th>Title</th>
-                <td>{{ page.title }}</td>
-            </tr>
-            <tr>
-                <th>Slug</th>
-                <td>{{ page.slug }}</td>
-            </tr>
-            <tr>
-                <th>Content</th>
-                <td>{{ page.content }}</td>
-            </tr>
+    <table class="table-auto mx-auto w-90 border-collapse border border-gray-300 mt-4">
+        <tbody class="bg-white hover:bg-gray-100">
+        <tr>
+            <th class="border border-gray-300 px-4 py-2">Id</th>
+            <td class="border border-gray-300 px-4 py-2">{{ page.id }}</td>
+        </tr>
+        <tr>
+            <th class="border border-gray-300 px-4 py-2">Title</th>
+            <td class="border border-gray-300 px-4 py-2">{{ page.title }}</td>
+        </tr>
+        <tr>
+            <th class="border border-gray-300 px-4 py-2">Slug</th>
+            <td class="border border-gray-300 px-4 py-2">{{ page.slug }}</td>
+        </tr>
         </tbody>
     </table>
+    <h2 class="border border-gray-300 px-4 py-2 w-80 mx-auto ">Content</h2>
+    <p class="border border-gray-300 px-4 py-2 w-80 mx-auto ">{{ page.content }}</p>
 
-    <a href="{{ path('app_admin_page_index') }}">back to list</a>
+    <div class="min-w-full flex gap-6 flex-col md:flex-row justify-between">
+        <a href="{{ path('app_admin_page_index') }}" class="w-full md:w-40 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4 text-center">Back to list</a>
+        <a href="{{ path('app_admin_page_edit', {'id': page.id}) }}" class="w-full md:w-40 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4 text-center">Edit</a>
+        <a href="{{ path('app_page_view', {'slug': page.slug}) }}" class="w-full md:w-40 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4 text-center">Preview</a>
+        <a href="{{ path('app_admin_page_change_home', {'id': page.id}) }}" class="w-full md:w-40 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4 text-center">Change Home</a>
 
-    <a href="{{ path('app_admin_page_edit', {'id': page.id}) }}">edit</a>
-
-    <a href="{{ path('app_page_view', {'slug': page.slug})}}">Preview</a>
-
-    {{ include('admin/page/_delete_form.html.twig') }}
+        {{ include('admin/page/_delete_form.html.twig') }}
+    </div>
 {% endblock %}

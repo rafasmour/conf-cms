@@ -1,29 +1,28 @@
 {% extends '/admin/base.admin.html.twig' %}
 
-
 {% block body %}
+    <h1 class="text-2xl font-bold mb-4">Product</h1>
 
-<h1>Product</h1>
-
-<table>
-    <tbody>
+    <table class="table-auto mx-auto w-90 border-collapse border border-gray-300 mt-4">
+        <tbody class="bg-white hover:bg-gray-100">
         <tr>
-            <th>Name</th>
-            <td>{{product.name}}</td>
+            <th class="border border-gray-300 px-4 py-2">Name</th>
+            <td class="border border-gray-300 px-4 py-2">{{ product.name }}</td>
         </tr>
         <tr>
-            <th>Description</th>
-            <td>{{product.description}}</td>
+            <th class="border border-gray-300 px-4 py-2">Description</th>
+            <td class="border border-gray-300 px-4 py-2">{{ product.description }}</td>
         </tr>
         <tr>
-            <th>Size</th>
-            <td>{{product.size}}</td>
+            <th class="border border-gray-300 px-4 py-2">Size</th>
+            <td class="border border-gray-300 px-4 py-2">{{ product.size }}</td>
         </tr>
-    </tbody>
-</table>
-<a href="{{ path ('app_admin_product_edit', {'id': product.id}) }}">Edit</a>
-<a href="{{ path ('app_admin_product_delete', {'id': product.id}) }}">Delete</a>
+        </tbody>
+    </table>
 
-{{ include('admin/product/_delete_form.html.twig') }}
+    <div class="min-w-full flex gap-6 flex-col md:flex-row justify-center">
+        <a href="{{ path('app_admin_product_edit', {'id': product.id}) }}" class="w-full md:w-28 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4 text-center">Edit</a>
+        <a href="{{ path('app_admin_product_delete', {'id': product.id}) }}" class="w-full md:w-28 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4 text-center">Delete</a>
+    </div>
 
 {% endblock %}

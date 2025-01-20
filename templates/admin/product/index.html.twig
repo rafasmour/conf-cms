@@ -3,8 +3,6 @@
 {% block title %}Hello ProductController!{% endblock %}
 
 {% block body %}
-
-
     <table class="table-auto mx-auto w-90 border-collapse border border-gray-300 mt-4">
         <thead class="bg-gray-200 text-gray-700">
         <tr>
@@ -28,6 +26,7 @@
         {% endfor %}
         </tbody>
     </table>
-    <a href="{{ path('app_admin_product_new') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">New product</a>
-
+    <div class="min-w-full flex gap-6 flex-col md:flex-row justify-center">
+        <a href="{{ path('app_admin_product_new') }}" class="w-full md:w-32 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4 text-center">New product</a>
+    </div>
 {% endblock %}

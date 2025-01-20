@@ -1,8 +1,15 @@
 {% extends '/admin/base.admin.html.twig' %}
 
-
 {% block body %}
+    <h1 class="text-2xl font-bold mb-4">Edit Product</h1>
+    <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+        {{ include('/admin/product/_form.html.twig') }}
+    </div>
 
-<h1>Edit Product</h1>
-{{ include('/admin/product/_form.html.twig') }}
+    <div class="min-w-full flex gap-6 flex-col md:flex-row justify-center">
+        <a href="{{ path('app_admin_product_index') }}" class="w-full md:w-32 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4 text-center">Back to list</a>
+        <a href="{{ path('app_admin_product_edit', {'id': product.id}) }}" class="w-full md:w-28 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4 text-center">Edit</a>
+        <a href="{{ path('app_admin_product_show', {'id': product.id}) }}" class="w-full md:w-28 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4 text-center">Preview</a>
+        <a href="{{ path('app_admin_product_delete', {'id': product.id}) }}" class="w-full md:w-28 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mt-4 text-center">Delete</a>
+    </div>
 {% endblock %}

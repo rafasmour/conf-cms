@@ -76,6 +76,7 @@ class AdminProductController extends AbstractController
 
         return $this->render('admin/product/edit.html.twig', [
             'form'=> $form->createView(),
+            'product'=> $product,
         ]);
     }
     #[Route('/admin/products/{id<\d+>}/delete', name: 'app_admin_product_delete')]

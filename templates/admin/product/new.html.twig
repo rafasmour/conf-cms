@@ -1,8 +1,10 @@
 {% extends '/admin/base.admin.html.twig' %}
 
-
 {% block body %}
+    <h1 class="text-2xl font-bold mb-4">New Product</h1>
+    {{ include('/admin/product/_form.html.twig') }}
 
-<h1>New Product</h1>
-{{ include('/admin/product/_form.html.twig') }}
+    <div class="min-w-full flex gap-6 flex-col md:flex-row justify-center">
+        <a href="{{ path('app_admin_product_index') }}" class="w-full md:w-32 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4 text-center">Back to list</a>
+    </div>
 {% endblock %}
