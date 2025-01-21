@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 final class ArticleController extends AbstractController
 {
-    #[Route(path: "/posts/", name: "app_index")]
+    /*#[Route(path: "posts/", name: "app_index")]
     public function index(EntityManagerInterface $entityManager): Response
     {
         $homeArticle = $entityManager->getRepository(Article::class)->findOneBy(['home' => true]);
@@ -22,8 +22,8 @@ final class ArticleController extends AbstractController
         return $this->render('article/view.html.twig', [
             'article' => $homeArticle,
         ]);
-    }
-    #[Route('/{slug<.*>}' , name:'app_article_view')]
+    }*/
+    #[Route('posts/{slug<.*>}' , name:'app_article_view')]
     public function getBySlug(string $slug, Request $request, EntityManagerInterface $manager): Response{
         $article = $manager->getRepository(Article::class)->findOneBySlug($slug);
         if (empty($article)){
