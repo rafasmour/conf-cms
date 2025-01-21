@@ -1,9 +1,7 @@
-<nav class="grid grid-rows-12 min-h-screen">
-    <ul class="flex flex-col list-none row-span-11">
-        <li><a  href="{{ path('app_admin_page_index') }}" class="text-black font-bold text-xl cursor-pointer"><i class="fa fa-paper-plane"></i> page</a></li>
-        <li><a  href="{{ path('app_admin_product_index') }}" class="text-black font-bold text-xl cursor-pointer"><i class="fa-solid fa-calendar"></i></svg> Products</a></li>
+<nav class=" flex flex-col justify-between min-h-screen max-[768px]:items-center">
+    <ul class="list-none">
+        <li><a  href="{{ path('app_admin_page_index') }}" class="text-black font-bold text-2xl md:text-xl text-center md:text-right cursor-pointer"><i class="fa fa-paper-plane"></i> <b class="max-[768px]:hidden">Page</b></li>
+        <li><a  href="{{ path('app_admin_product_index') }}" class="text-black font-bold text-2xl md:text-xl text-center md:text-right cursor-pointer"><i class="fa-solid fa-calendar"></i> <b class="max-[768px]:hidden">Products</b></li>
     </ul>
-    <div class="row-span-1">
-        <a href="{{ path('app_admin_logout') }}" class="text-black font-bold text-xl cursor-pointer"><i class="fa-solid fa-user-large-slash"></i> Logout</a>
-    </div>
+    <a href="{{ path('app_admin_logout') }}" class="text-black font-bold text-xl cursor-pointer"><i class="fa-solid fa-user-large-slash"></i><b class="max-[768px]:hidden">Logout</b></a>
 </nav>
