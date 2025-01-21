@@ -1,7 +1,7 @@
 {{ form_start(form, {'attr': {'class': 'space-y-4'}}) }}
     {% for field in form %}
         <div>
-            {% if field.vars.id == 'page__token' %}
+            {% if field.vars.id == 'article__token' %}
                 {{ form_widget(field, {'attr': {'type': 'hidden'}}) }}
             {% else %}
                 {{ form_label(field) }}<br>

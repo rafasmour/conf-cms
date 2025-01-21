@@ -2,14 +2,14 @@
 
 namespace App\Entity;
 
-use App\Repository\PageRepository;
+use App\Repository\ArticleRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: PageRepository::class)]
-#[ORM\Table(name: 'page')]
-#[ORM\UniqueConstraint(name: 'unique_home', columns: ['home'])]
-class Page
+#[ORM\Entity(repositoryClass: ArticleRepository::class)]
+#[ORM\Table(name: 'article')]
+//#[ORM\UniqueConstraint(name: 'unique_home', columns: ['home'])]
+class Article
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -25,8 +25,8 @@ class Page
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $content = null;
 
-    #[ORM\Column(type: 'boolean', unique: true)]
-    private ?bool $home = false;
+//    #[ORM\Column(type: 'boolean', unique: true)]
+//    private ?bool $home = false;
 
     public function getId(): ?int
     {
