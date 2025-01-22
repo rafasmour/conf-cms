@@ -1,9 +1,9 @@
 {% extends '/admin/base.admin.html.twig' %}
 
-{% block title %}article{% endblock %}
+{% block title %}{{ article.title }}{% endblock %}
 
 {% block body %}
-    <h1 class="p-3 font-bold text-2xl">article</h1>
+    <h1 class="p-3 font-bold text-2xl">{{ article.title }}</h1>
 
     <table class="table-auto mx-auto w-90 border-collapse border border-gray-300 mt-4">
         <tbody class="bg-white hover:bg-gray-100">
@@ -27,7 +27,7 @@
     <div class="min-w-full flex gap-6 flex-col md:flex-row justify-between">
         <a href="{{ path('app_admin_article_index') }}" class="w-full md:w-40 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4 text-center">Back to list</a>
         <a href="{{ path('app_admin_article_edit', {'id': article.id}) }}" class="w-full md:w-40 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4 text-center">Edit</a>
-        <a href="{{ path('app_article_view', {'slug': article.slug}) }}" class="w-full md:w-40 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4 text-center">Preview</a>
+        <a href="{{ path('app_admin_article_view', {'slug': article.slug}) }}" class="w-full md:w-40 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4 text-center">Preview</a>
 {#
         <a href="{{ path('app_admin_article_change_home', {'id': article.id}) }}" class="w-full md:w-40 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4 text-center">Change Home</a>
 #}

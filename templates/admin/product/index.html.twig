@@ -1,6 +1,6 @@
 {% extends '/admin/base.admin.html.twig' %}
 
-{% block title %}Hello ProductController!{% endblock %}
+{% block title %}Products{% endblock %}
 
 {% block body %}
     <h1 class="p-3 font-bold text-2xl">Products</h1>
@@ -18,9 +18,11 @@
                 <td class="border border-gray-300 px-4 py-2">{{ product.name }}</td>
                 <td class="border border-gray-300 px-4 py-2">{{ product.size }}</td>
                 <td class="border border-gray-300 px-4 py-2">
+                    <div class="flex items-center gap-2 space-x-2">
                     <a href="{{ path('app_admin_product_show', {'id': product.id}) }}" class="text-blue-500 hover:text-blue-700">show</a>
                     <a href="{{ path('app_admin_product_edit', {'id': product.id}) }}" class="text-blue-500 hover:text-blue-700 ml-2">edit</a>
                     <a href="{{ path('app_admin_product_delete', {'id': product.id}) }}" class="text-blue-500 hover:text-blue-700 ml-2">delete</a>
+                    </div>
                 </td>
             </tr>
         {% endfor %}
