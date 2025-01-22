@@ -3,16 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}My Website{% endblock %}</title>
-    {{ include('components/_stylesheets.html.twig') }}
+    <title>{% block pageTitle %}My Website{% endblock %}</title>
+    {{ include('components/public/_styles.html.twig') }}
 </head>
 <body class=" min-h-screen bg-gray-200 shadow-inner">
     <!-- Navigation Bar -->
         {% include 'components/public/_header.html.twig' %}
-    
+
 
     <!-- Main Content -->
-        {% include 'components/public/_main.html.twig' %}
+        <main class="min-h-screen text-black mx-20">
+            <h1 class=" text-4xl text-pretty mt-4 mb-3">{% block title %}{% endblock %}</h1>
+            <p class="text-lg">{% block content %}{% endblock %}</p>
+        </main>
 
     <!-- Footer -->
         {% include 'components/public/_footer.html.twig' %}

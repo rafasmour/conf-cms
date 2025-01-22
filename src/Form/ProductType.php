@@ -15,7 +15,6 @@ class ProductType extends AbstractType
             ->add('name')
             ->add('description')
             ->add('size')
-            ->add('save', SubmitType::class, ['label' => 'Add new Product'])
         ;
     }
 
