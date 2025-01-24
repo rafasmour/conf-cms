@@ -1,0 +1,48 @@
+{% extends '/admin/base.admin.html.twig' %}
+
+{% block title %}Pages{% endblock %}
+
+{% block body %}
+    <h1 class="p-3 font-bold text-2xl">Pages</h1>
+
+    <table class="table-auto self-center mx-auto min-w-72 border-collapse border border-gray-300 mt-4">
+        <thead class="bg-gray-200 text-gray-700">
+        <tr>
+            <th class="border border-gray-300 px-4 py-2">Id</th>
+            <th class="border border-gray-300 px-4 py-2">Title</th>
+            <th class="border border-gray-300 px-4 py-2">Slug</th>
+            <th class="border border-gray-300 px-4 py-2">Home</th>
+            <th class="border border-gray-300 px-4 py-2">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for page in pages %}
+            <tr class="bg-white hover:bg-gray-100">
+                <td class="border border-gray-300 px-4 py-2">{{ page.id }}</td>
+                <td class="border border-gray-300 px-4 py-2">{{ page.title }}</td>
+                <td class="border border-gray-300 px-4 py-2">{{ page.slug }}</td>
+                <td class="border border-gray-300 px-4 py-2">
+                    <div class="flex items-center gap-2 space-x-2">
+                        <input type="checkbox" aria-readonly="true" disabled {{ page.home ? 'checked' : '' }}>
+                        {{ include('/admin/page/_set_home_index_form.html.twig') }}
+                    </div>
+                </td>
+                <td class="border border-gray-300 px-4 py-2">
+                    <div class="flex items-center gap-2 space-x-2">
+                        <a href="{{ path('app_admin_page_show', {'id': page.id}) }}" class="text-blue-500 hover:text-blue-700">show</a>
+                        <a href="{{ path('app_admin_page_edit', {'id': page.id}) }}" class="text-blue-500 hover:text-blue-700">edit</a>
+                        {{ include('admin/page/_delete_index_form.html.twig') }}
+                    </div>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5" class="border border-gray-300 px-4 py-2 text-center">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <div class="min-w-full flex justify-center">
+        <a href="{{ path('app_admin_page_new') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4">Create new</a>
+    </div>
+{% endblock %}

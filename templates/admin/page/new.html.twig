@@ -1,0 +1,13 @@
+{% extends '/admin/base.admin.html.twig' %}
+
+{% block title %}New Page{% endblock %}
+
+{% block body %}
+    <h1 class="p-3 font-bold text-2xl">New Page</h1>
+
+    <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+        {{ include('admin/page/_form.html.twig') }}
+    </div>
+
+    <a href="{{ path('app_admin_page_index') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Back to list</a>
+{% endblock %}

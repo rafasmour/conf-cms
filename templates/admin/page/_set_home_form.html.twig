@@ -1,0 +1,4 @@
+<form method="post" action="{{ path('app_admin_page_set_home', {'id': page.id}) }}">
+    <input type="hidden" name="_token" value="{{ csrf_token('set_home' ~ page.id) }}">
+    <button type="submit" class="w-full md:w-24 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4 text-centermd:w-24 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4">{{ (page.home) ? 'unset' : 'set' }}</button>
+</form>
